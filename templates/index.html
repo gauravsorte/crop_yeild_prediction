@@ -1,8 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <!-- Required meta tags-->
+<title>Crop yield Prediction</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+body {font-family: "Times New Roman", Georgia, Serif;}
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Playfair Display";
+  letter-spacing: 5px;
+}
+</style>
+
+ <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="B.E PROJECT">
@@ -12,8 +23,8 @@
     <title>Crop Yield Prediction Using ML</title>
 
     <!-- Icons font CSS-->
-    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="{{url_for('static', filename='vendor/mdi-font/css/material-design-iconic-font.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{url_for('static', filename='vendor/font-awesome-4.7/css/font-awesome.min.css')}}" rel="stylesheet" media="all">
     <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
         rel="stylesheet">
@@ -25,8 +36,37 @@
     <!-- Main CSS-->
     <link href="{{url_for('static', filename='css/main.css')}}" rel="stylesheet" media="all">
 </head>
-
 <body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
+    <a href="#home" class="w3-bar-item w3-button">CROP YIELD PREDICTION</a>
+    <!-- Right-sided navbar links. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="#predict" class="w3-bar-item w3-button">PREDICT</a>
+      <a href="#productivity" class="w3-bar-item w3-button">PRODUCTIVITY</a>
+      <a href="#why" class="w3-bar-item w3-button">WHY</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<h1 class="w3-center">CROP YIELD PREDICTION</h1><br>
+<header class="w3-display-container w3-content w3-wide" style="max-width:1200px;min-width:300px" id="home">
+  <h1 class="w3-center">CROP YIELD PREDICTION</h1><br>
+  <img class="w3-image" src="{{url_for('static', filename='agri.jpg')}}" alt="Hamburger Catering" width="1200" height="50">
+  <div class="w3-display-bottomleft w3-padding-large w3-opacity">
+    <h1 class="w3-xxlarge">CROP YIELD PREDICTION</h1>
+  </div>
+</header>
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:1100px">
+
+  <!-- Predict Section -->
+  <div class="w3-row w3-padding-64" id="predict">
+    <h1 class="w3-center">Predict the Yield</h1><br>
     <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
         <div class="wrapper wrapper--w790">
             <div class="card card-5">
@@ -34,13 +74,13 @@
                     <h2 class="title">Crop Yield Prediction</h2>
                 </div>
                 <div class="card-body">
-                    <form method="POST">
+                    <form action="/predict" method="post">
                         <div class="form-row">
                             <div class="name">District</div>
                             <div class="value">
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="subject">
+                                        <select name="district">
                                             <option disabled="disabled" selected="selected">Choose District</option>
                                             <option>AHMEDNAGAR</option>
                                             <option>AKOLA</option>
@@ -58,20 +98,15 @@
                                             <option>JALNA</option>
                                             <option>KOLHAPUR</option>
                                             <option>LATUR</option>
-                                            <option>MUMBAI</option>
                                             <option>NAGPUR</option>
                                             <option>NANDED</option>
                                             <option>NANDURBAR</option>
                                             <option>NASHIK</option>
                                             <option>OSMANABAD</option>
-                                            <option>PALGHAR</option>
                                             <option>PARBHANI</option>
                                             <option>PUNE</option>
-                                            <option>RAIGAD</option>
-                                            <option>RATNAGIRI</option>
                                             <option>SANGLI</option>
                                             <option>SATARA</option>
-                                            <option>SINDHUDURG</option>
                                             <option>SOLAPUR</option>
                                             <option>THANE</option>
                                             <option>WARDHA</option>
@@ -89,13 +124,10 @@
                             <div class="value">
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="subject">
+                                        <select name="season">
                                             <option disabled="disabled" selected="selected">Choose Season</option>
-                                            <option>Autumn</option>
                                             <option>Kharif</option>
                                             <option>Rabi</option>
-                                            <option>Summer</option>
-                                            <option>Whole Year</option>
                                         </select>
                                         <div class="select-dropdown"></div>
                                     </div>
@@ -108,42 +140,31 @@
                             <div class="value">
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="subject">
+                                        <select name="crop">
                                             <option disabled="disabled" selected="selected">Choose Crop</option>
-                                            <option>Maize</option>
-                                            <option>Arhar/Tur</option>
-                                            <option>Bajra</option>
-                                            <option>Gram</option>
-                                            <option>Jowar</option>
-                                            <option>Moong(Green Gram)</option>
-                                            <option>Pulses total</option>
-                                            <option>Ragi</option>
-                                            <option>Rice</option>
-                                            <option>Sugarcane</option>
-                                            <option>Total foodgrain</option>
-                                            <option>Urad</option>
-                                            <option>Other Rabi pulses</option>
-                                            <option>Wheat</option>
-                                            <option>Cotton(lint)</option>
-                                            <option>Castor seed</option>
-                                            <option>Groundnut</option>
-                                            <option>Niger seed</option>
-                                            <option>Other Cereals & Millets</option>
-                                            <option>Other Kharif pulses</option>
-                                            <option>Sesamum</option>
-                                            <option>Soyabean</option>
-                                            <option>Sunflower</option>
-                                            <option>Linseed</option>
-                                            <option>Rapeseed &Mustard</option>
-                                            <option>Safflower</option>
-                                            <option>Small millets</option>
-                                            <option>other oilseeds</option>
-                                            <option>Banana</option>
-                                            <option>Grapes</option>
-                                            <option>Mango</option>
-                                            <option>Onion</option>
-                                            <option>Tomato</option>
-                                            <option>Tobacco</option>
+                                            <option value="Bajra">Bajra</option>
+                                            <option value="Jowar">Jowar</option>
+                                            <option value="Wheat">Wheat</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Soil Type</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="soil_type">
+                                            <option disabled="disabled" selected="selected">Choose Soil Type</option>
+                                            <option value="Chalky">Chalky</option>
+                                            <option value="Clay">Clay</option>
+                                            <option value="Loamy">Loamy</option>
+                                            <option value="Peaty">Peaty</option>
+                                            <option value="Sandy">Sandy</option>
+                                            <option value="Silt">Silt</option>
+                                            <option value="Silty">Silty</option>
                                         </select>
                                         <div class="select-dropdown"></div>
                                     </div>
@@ -155,45 +176,10 @@
                             <div class="name">Area</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="text" name="company">
+                                    <input class="input--style-5" type="text" name="area">
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="name">Unit of Prediction</div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="subject">
-                                            <option disabled="disabled" selected="selected">Choose option</option>
-                                            <option>Kg's</option>
-                                            <option>Tonne's</option>
-                                        </select>
-                                        <div class="select-dropdown"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <style>
-                            button {
-
-                                animation-name: example;
-                                animation-duration: 3s;
-                                animation-iteration-count: infinite;
-                            }
-
-                            @keyframes example {
-                                from {
-                                    background-color: red;
-                                }
-
-                                to {
-                                    background-color: greenyellow;
-                                }
-                            }
-                        </style>
-
                         <div>
                             <button class="btn btn--radius-2 btn--red" type="submit">Predict</button>
                         </div>
@@ -206,21 +192,64 @@
 
     <!-- Jquery JS-->
     <script src="{{url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
-    <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
     <!-- Vendor JS-->
-    <!-- <script src="vendor/select2/select2.min.js"></script> -->
     <script src="{{url_for('static', filename='vendor/select2/select2.min.js')}}"></script>
-    <!-- <script src="vendor/datepicker/moment.min.js"></script> -->
     <script src="{{url_for('static', filename='vendor/datepicker/moment.min.js')}}"></script>
-    <!-- <script src="vendor/datepicker/daterangepicker.js"></script> -->
     <script src="{{url_for('static', filename='vendor/datepicker/daterangepicker.js')}}"></script>
 
     <!-- Main JS-->
     <script src="{{url_for('static', filename='js/global.js')}}"></script>
-    <!-- <script src="js/global.js"></script> -->
+
+    
+  </div>
+  
+  <hr>
+  
+  <!-- productivity Section -->
+  <div class="w3-row w3-padding-64" id="productivity">
+    <div class="w3-col l6 w3-padding-large">
+      <h1 class="w3-center">Increase Productivity</h1><br>
+      <h4>Ouality of Seeds</h4>
+      <p class="w3-text-grey">Planting only high-quality seeds represents one of the eco friendly methods to increase crop yield.</p><br>
+    
+      <h4>Field Productivity Zoning</h4>
+      <p class="w3-text-grey">Farmer can plant seeds more densely in the areas with greater productivity.</p><br>
+    
+      <h4>Monitoring Crops Growth</h4>
+      <p class="w3-text-grey">From the early stage of development through budding and up to harvesting, it is very important to monitor plant health in order to timely detect any problem.</p><br>
+    
+      <h4>Accurate Weather Prediction</h4>
+      <p class="w3-text-grey">Climate conditions have a predominant influence on the development of plants and, consequently, on yields.</p><br>
+    
+      <h4>Crop Protection Methods</h4>
+      <p class="w3-text-grey">In general, there are various crop protection methods. Among the main ones are weed/pest management and plant disease management.</p><br>
+
+      <h4>Soil Testing & Its Quality</h4>
+      <p class="w3-text-grey"> To attain increased crop yields, farmers need to closely monitor soil conditions on their land plots. One of the best ways to maintain the soil in good health is to practice crop rotation, among others.</p>    
+    </div>
+    
+    <div class="w3-col l6 w3-padding-large">
+      <img src="{{url_for('static', filename='3001.jpg')}}" class="w3-round w3-image w3-opacity-min" alt="produvtivity" style="width:100%; height:600px">
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- why Section -->
+  <div class="w3-container w3-padding-64" id="why">
+    <h1>Why is crop yield prediction important</h1><br>
+    
+    <p class="w3-text-blue-grey w3-large"><b>Accurate yield prediction is pivotal to:</b></p>
+    <br>
+    <p>Global food production, prices and food security</p>
+      <br><p>Governments and companies make timely import/export decisions based on yield prediction</p>
+      <br><p>Farmers and others stakeholders use the yield prediction to make informed financial and business decisions.</p>
+  </div>
+  
+<!-- End page content -->
+</div>
+
+
 
 </body>
-
-
 </html>
-<!-- end document-->
